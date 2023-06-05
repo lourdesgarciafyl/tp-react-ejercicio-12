@@ -1,0 +1,17 @@
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#containerPrincipal{
+  flex-grow: 1;
+}
+#formSelect{
+  width: fit-content;
+}
+.descripcionNoticia{
+  max-height: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
