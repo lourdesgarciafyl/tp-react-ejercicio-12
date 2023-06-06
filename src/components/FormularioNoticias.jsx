@@ -31,7 +31,7 @@ const FormularioNoticias = () => {
   }
 
     return (
-        <section className="border rounded p-3 w-form">
+        <section className="border rounded p-3 ">
             <Form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
             <Form.Group>
             <Row>
