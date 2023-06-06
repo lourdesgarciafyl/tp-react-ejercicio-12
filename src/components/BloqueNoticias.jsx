@@ -1,5 +1,4 @@
 import {Row} from "react-bootstrap"
-import React from "react";
 import CardNoticia from "./CardNoticia";
 
 const BloqueNoticias = ({noticias}) => {
