@@ -1,29 +1,48 @@
 import { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Button} from "react-bootstrap";
+import BloqueNoticias from "./BloqueNoticias";
+import { useForm } from "react-hook-form";
 
+const FormularioNoticias = () => {
+  const [noticias, setNoticias] = useState([]);
 
-const FormularioNoticias = ({ consultarApi }) => {
-    const [categoria, setCategoria] = useState("");
+  const {register, formState: {errors}, reset , handleSubmit} = useForm()
 
-    const handleOpciones = (event) =>{
-        const categoriaElegida = event.target.value;
-        setCategoria(categoriaElegida)
-        if(categoriaElegida === "--Seleccione una categoria--"){
-            return 
-        } else{
-            consultarApi(categoriaElegida)
-        }
+  const consultarApi = async ({categoria, pais}) =>{
+    try{
+      const respuesta = await fetch("https://newsdata.io/api/1/news?apikey=pub_24021f4291fa33aa976aa3dddd22e4c75cb40&country="+pais+"&language=es&category="+categoria)
+      const datos = await respuesta.json()
+      console.log(datos.results)
+      setNoticias(datos.results)
     }
+    catch(errores){
+      console.log(errores)
+    }
+  }
 
     return (
         <section>
-            <Form className="d-flex flex-column align-items-center flex-md-row justify-content-md-center">
-                <Form.Group as={Row}>
-                <Col md={5}>
-                <Form.Label className="mt-1">Buscar por categoría:</Form.Label>
-                </Col>
-                <Col md={6}>
-                <Form.Select  className="mx-2" id="formSelect" onChange={handleOpciones} value={categoria}>
+            <Form onSubmit={handleSubmit(consultarApi)} className="d-flex flex-column align-items-center">
+
+            <Form.Group className="me-4">
+            <Form.Label>Seleccionar pais:</Form.Label>
+            <Form.Select  className="formSelect" {... register("pais", {required: "Campo obligatorio"})}>
+              <option value="">--Seleccione un pais--</option>
+              <option value="ar">Argentina</option>
+              <option value="de">Alemania</option>
+              <option value="be">Belgica</option>
+              <option value="br">Brasil</option>
+              <option value="ca">Canada</option>
+              <option value="ch">China</option>
+              <option value="co">Colombia</option>
+              <option value="fr">Francia</option>
+              <option value="us">Estados Unidos</option>
+            </Form.Select>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label className="mt-1">Seleccionar categoría:</Form.Label>
+            <Form.Select className="formSelect"  {... register("categoria", {required: "Campo obligatorio"})}>
                 <option value="">--Seleccione una categoria--</option>
                 <option value="top">Destacadas</option>
                 <option value="science">Ciencia</option>
@@ -31,9 +50,12 @@ const FormularioNoticias = ({ consultarApi }) => {
                 <option value="entertainment">Entretenimiento</option>
                 <option value="politics">Politica</option>
                 <option value="technology">Tecnología</option>
-                </Form.Select>
-                </Col>
-                </Form.Group>
+            </Form.Select>
+             </Form.Group>
+
+             <Button variant="primary" className="my-2" type="submit">
+               Enviar
+            </Button>
         </Form>
         </section>
     )

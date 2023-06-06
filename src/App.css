@@ -7,7 +7,7 @@
 #containerPrincipal{
   flex-grow: 1;
 }
-#formSelect{
+.formSelect{
   width: fit-content;
 }
 .descripcionNoticia{
