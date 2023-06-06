@@ -16,7 +16,7 @@ const FormularioNoticias = () => {
     try {
       const respuesta = await fetch(API);
       const dato = await respuesta.json();
-      console.log(dato.result);
+      console.log(dato.results);
       setNoticias(dato.results);
       }
     catch(errores){
@@ -31,7 +31,7 @@ const FormularioNoticias = () => {
   }
 
     return (
-        <section>
+        <section className="border rounded p-3 w-form">
             <Form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
             <Form.Group>
             <Row>

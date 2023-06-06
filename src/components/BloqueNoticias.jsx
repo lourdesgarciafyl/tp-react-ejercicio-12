@@ -3,7 +3,7 @@ import CardNoticia from "./CardNoticia";
 
 const BloqueNoticias = ({noticias}) => {
     return(
-        <Row xs={12} md={4} className="g-4 mb-3">
+        <Row>
             {noticias.map((noticia, indice) =>(
                 <CardNoticia noticia={noticia} key={indice}></CardNoticia>
             ))}

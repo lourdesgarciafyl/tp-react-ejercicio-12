@@ -7,11 +7,12 @@
 #containerPrincipal{
   flex-grow: 1;
 }
-.formSelect{
-  width: fit-content;
+.w-form{
+  width: 100%;
 }
-.descripcionNoticia{
-  max-height: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+@media all and (min-width:992px){ 
+  .w-form{
+      width: 75%;
+  }
 }
