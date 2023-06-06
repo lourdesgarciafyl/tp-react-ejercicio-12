@@ -26,7 +26,7 @@ const FormularioNoticias = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    API = `https://newsdata.io/api/1/news?apikey=pub_24021f4291fa33aa976aa3dddd22e4c75cb40&language=es${categoria}${pais}`
+    API = `https://newsdata.io/api/1/news?apikey=pub_24021f4291fa33aa976aa3dddd22e4c75cb40${categoria}${pais}`
     consultarApi()
   }
 
